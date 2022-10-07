@@ -11,19 +11,7 @@ import javax.swing.filechooser.FileSystemView;
 public class app {
     
     public static void menu(){
-    	JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-		jfc.setDialogTitle("Escolha onde criar o Arquivo");
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-		int returnValue = jfc.showSaveDialog(null);
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			if (jfc.getSelectedFile().isDirectory()) {
-				
-				System.out.println(jfc.getSelectedFile());
-			}
-		}
-		
-    	
+    	  	
         System.out.println("\tManipule o Arquivo\n");
         System.out.println("1. Inclui Nome");
         System.out.println("2. Exibir os Nomes");
@@ -37,7 +25,8 @@ public class app {
     public static void inclui(){
     	//Instancia o a criação do arquivo 
     	
-    	File tarefa = new File("C:/Users/Magdiel.Lemos/Desktop/arquivo.txt");
+    	String Ambiente = System.getenv("USERPROFILE");
+    	File tarefa = new File(Ambiente+"/Desktop/arquivo.txt");
     	     
         try {
     		if (!tarefa.exists()) {
@@ -105,6 +94,19 @@ public class app {
     
     
     public static void main(String[] args) {
+    	
+    	JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		jfc.setDialogTitle("Escolha onde criar o Arquivo");
+		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		int returnValue = jfc.showSaveDialog(null);
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			if (jfc.getSelectedFile().isDirectory()) {
+				
+				System.out.println(jfc.getSelectedFile());
+			}
+		}
+    	
         int opcao;
         Scanner entrada = new Scanner(System.in);
                 
