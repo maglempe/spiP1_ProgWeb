@@ -8,7 +8,9 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-public class app {
+public class App {
+	
+	private static String caminho;
     
     public static void menu(){
     	  	
@@ -22,17 +24,13 @@ public class app {
         
     }
 
-    public static void inclui(){
+    public static void inclui(File tarefa){
     	//Instancia o a criação do arquivo 
     	
-    	String Ambiente = System.getenv("USERPROFILE");
-    	File tarefa = new File(Ambiente+"/Desktop/arquivo.txt");
+    	//String Ambiente = System.getenv("USERPROFILE");
+    	File arquivo = tarefa;
     	     
         try {
-    		if (!tarefa.exists()) {
-    		//cria um arquivo (vazio)
-    		tarefa.createNewFile();
-    		}
     		
     		System.out.println("Inclua um nome no arquivo: ");
     		Scanner entrada = new Scanner (System.in);
@@ -50,9 +48,9 @@ public class app {
     		}
     }
     
-    public static void ler(){
-    	String Ambiente = System.getenv("USERPROFILE");
-    	File tarefa = new File(Ambiente+"/Desktop/arquivo.txt");
+    public static void ler(File tarefa){
+    	//String Ambiente = System.getenv("USERPROFILE");
+    	File arquivo = tarefa;
     	
 		try {
 		if (!tarefa.exists()) {
@@ -79,9 +77,9 @@ public class app {
 		}
    }
     
-    public static void exclui(){
-    	String Ambiente = System.getenv("USERPROFILE");
-    	File tarefa = new File(Ambiente+"/Desktop/arquivo.txt");
+    public static void exclui(File tarefa){
+    	//String Ambiente = System.getenv("USERPROFILE");
+    	File arquivo = tarefa;
     	boolean result = tarefa.delete();
         if (result) {
             System.out.println("Arquivo deletado com Sucesso.");
@@ -103,10 +101,13 @@ public class app {
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			if (jfc.getSelectedFile().isDirectory()) {
 				
-				System.out.println(jfc.getSelectedFile());
+				caminho = String.valueOf(jfc.getSelectedFile());
+				System.out.println(caminho);
 			}
 		}
     	
+		File tarefa = new File(caminho + "/arquivo.txt");
+		
         int opcao;
         Scanner entrada = new Scanner(System.in);
                 
@@ -116,15 +117,15 @@ public class app {
             
             switch(opcao){
             case 1:
-                inclui();
+                inclui(tarefa);
                 break;
                 
             case 2:
-                ler();
+                ler(tarefa);
                 break;
                 
             case 3:
-                exclui();
+                exclui(tarefa);
                 break;
             
                                     
@@ -139,4 +140,3 @@ public class app {
 
 	
 }
-
