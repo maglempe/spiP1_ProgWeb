@@ -72,7 +72,7 @@ public class app {
    }
     
     public static void exclui(File tarefa){
-    	//File arquivo = tarefa;
+
     	boolean result = tarefa.delete();
         if (result) {
             System.out.println("Arquivo deletado com Sucesso.");
