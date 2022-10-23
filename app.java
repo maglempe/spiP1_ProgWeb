@@ -8,7 +8,7 @@ import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-public class App {
+public class app {
 	
 	private static String caminho;
     
@@ -25,11 +25,8 @@ public class App {
     }
 
     public static void inclui(File tarefa){
-    	//Instancia o a criação do arquivo 
-    	
-    	//String Ambiente = System.getenv("USERPROFILE");
-    	File arquivo = tarefa;
-    	     
+    	//Instancia o a criação do arquivo
+
         try {
     		
     		System.out.println("Inclua um nome no arquivo: ");
@@ -49,15 +46,12 @@ public class App {
     }
     
     public static void ler(File tarefa){
-    	//String Ambiente = System.getenv("USERPROFILE");
-    	File arquivo = tarefa;
-    	
+
 		try {
 		if (!tarefa.exists()) {
 		//cria um arquivo (vazio)
 		tarefa.createNewFile();
 		}
-		
 		//faz a leitura do arquivo
 
 		FileReader fr = new FileReader(tarefa);
@@ -78,8 +72,7 @@ public class App {
    }
     
     public static void exclui(File tarefa){
-    	//String Ambiente = System.getenv("USERPROFILE");
-    	File arquivo = tarefa;
+    	//File arquivo = tarefa;
     	boolean result = tarefa.delete();
         if (result) {
             System.out.println("Arquivo deletado com Sucesso.");
@@ -102,7 +95,7 @@ public class App {
 			if (jfc.getSelectedFile().isDirectory()) {
 				
 				caminho = String.valueOf(jfc.getSelectedFile());
-				System.out.println(caminho);
+				System.out.println("Você está salvano o arquivo em: "+caminho);
 			}
 		}
     	
@@ -114,24 +107,12 @@ public class App {
         do{
             menu();
             opcao = entrada.nextInt();
-            
-            switch(opcao){
-            case 1:
-                inclui(tarefa);
-                break;
-                
-            case 2:
-                ler(tarefa);
-                break;
-                
-            case 3:
-                exclui(tarefa);
-                break;
-            
-                                    
-            default:
-                System.out.println("Tente uma das Opcoes");
-                
+
+            switch (opcao) {
+                case 1 -> inclui(tarefa);
+                case 2 -> ler(tarefa);
+                case 3 -> exclui(tarefa);
+                default -> System.out.println("Tente uma das Opcoes");
             }
         } while(opcao != 0);
         
